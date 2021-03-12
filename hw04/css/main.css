@@ -1,0 +1,21 @@
+body{
+    background-color: #1C243C;
+}
+
+#wrapper {
+    width: 900px;
+    margin: 10px auto;
+    background-color: #fff;
+    border: solid white 2px;
+}
+
+#myWorld {
+    width: 900px;
+    height: 600px;
+
+}
+
+h2, h5{
+    text-align: center;
+    color: white;
+}

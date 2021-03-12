@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fort Point, SF</title>
+    <meta charset="UTF-8">
+    <!--link to frameworks-->
+    <link rel="stylesheet" href="css/pannellum.css">
+    <script type="application/javascript" src="js/pannellum.js"></script>
+    <style>
+        #wrapper {
+            width: 1280px;
+            margin: 0 auto;
+        }
+
+        #vrCanvasID {
+            width: 1280px;
+            height: 650px;
+        }
+
+        /* Hotspots */
+        .facts-hotspot {
+            height: 30px;
+            width: 30px;
+            background-color: #ff4500;
+        }
+
+
+        .bridge-hotspot {
+            height: 64px;
+            width: 83px;
+            background-image: url(img/white-bridge2.png);
+
+        }
+
+        .play-hotspot {
+            height: 64px;
+            width: 64px;
+            background-image: url(img/whiteplay.png);
+        }
+
+        .play-hotspot-med {
+            height: 94px;
+            width: 94px;
+            background-image: url(img/play-medium.png);
+        }
+
+        .pic-hotspot {
+            height: 78px;
+            width: 78px;
+            background-image: url(img/image-icon.png);
+        }
+
+
+        div.custom-tooltip span {
+            visibility: hidden;
+            position: absolute;
+            border-radius: 3px;
+            background-color: rgba(0, 0, 0, 0.479);
+            color: rgb(255, 255, 255);
+            text-align: center;
+            max-width: 200px;
+            padding: 15px;
+            margin-left: -200px;
+            cursor: default;
+            filter: drop-shadow(0 0 0.75rem black);
+            ;
+        }
+
+        div.custom-tooltip:hover span {
+            visibility: visible;
+        }
+
+        div.custom-tooltip:hover span:after {
+            content: '';
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.479) transparent transparent transparent;
+            bottom: -19px;
+            left: -10px;
+            margin: 0 50%;
+        }
+
+        /* Tool Tip Video */
+
+        div.custom-tooltip-vid span {
+            visibility: hidden;
+            position: absolute;
+            border-radius: 3px;
+            background-color: white;
+            color: white;
+            text-align: center;
+            max-width: 426px;
+            padding: 25px 20px 20px 20px;
+            margin-left: -200px;
+            cursor: default;
+        }
+
+        div.custom-tooltip-vid:hover span {
+            visibility: visible;
+        }
+
+        /* Tool Tip Images */
+
+        div.custom-tooltip-img span {
+            visibility: hidden;
+            position: absolute;
+            border-radius: 3px;
+            background-color: rgb(255, 255, 255);
+            color: black;
+            text-align: center;
+            max-width: 200px;
+            padding: 10px 10px 5px 10px;
+            margin-left: -220px;
+            cursor: default;
+            top: -185px;
+        }
+
+        div.custom-tooltip-img:hover span {
+            visibility: visible;
+        }
+
+
+        div.custom-tooltip-img:hover span:after {
+            content: '';
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+            bottom: -20px;
+            left: -10px;
+            margin: 0 50%;
+        }
+
+        /* img 2 */
+
+        div.custom-tooltip-img2 span {
+            visibility: hidden;
+            position: absolute;
+            border-radius: 3px;
+            background-color: rgba(255, 255, 255, 0.842);
+            color: black;
+            text-align: center;
+            max-width: 400px;
+            padding: 10px 10px 5px 10px;
+            margin-left: -220px;
+            cursor: default;
+            top: -185px;
+        }
+
+        div.custom-tooltip-img2:hover span {
+            visibility: visible;
+        }
+
+
+        div.custom-tooltip-img2:hover span:after {
+            content: '';
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+            bottom: -20px;
+            left: -10px;
+            margin: 0 50%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="vrCanvasID"></div>
+    </div>
+
+
+    <script type="application/javascript">
+        pannellum.viewer('vrCanvasID', {
+            "type": "equirectangular",
+            "showControls": true,
+            "panorama": "img/sf.jpeg",
+            "hotSpotDebug": true, /* Figure out the position of soemthing when you click onto the place on the screen and it comes up on the console*/
+            "title": "Hw03-Fort Point, San Francisco",
+            "author": "pixexd",
+            "autoRotate": 0,
+            "autoLoad": true,
+            "hotSpots": [{
+                "pitch": 0, /*Up down*/
+                "yaw": 0, /*left right*/
+                "type": "info", /* determines what type of icon is being displayed*/
+                "text": "Learn more about Fort Point",/*what text do you want to display on hover*/
+                "URL": "https://www.nps.gov/fopo/learn/historyculture/index.htm" /*URL since the text says LINK*/
+
+            },
+            {
+                "pitch": 0,
+                "yaw": 140,
+                "cssClass": "play-hotspot",
+                "createTooltipFunc": hotspotVid, /* On hover */
+                "createTooltipArgs": "video/fort.mp4",
+            },
+            {
+                "pitch": -9,
+                "yaw": -111,
+                "cssClass": "play-hotspot-med",
+                "createTooltipFunc": hotspotVid, /* On hover */
+                "createTooltipArgs": "video/arches2.mp4",
+            },
+            {
+                "pitch": -2,
+                "yaw": 70,
+                "cssClass": "pic-hotspot",
+                "createTooltipFunc": hotspotImg2, /* On hover */
+                "createTooltipArgs": "img/cannon_300x.jpg",
+                "clickHandlerFunc": displayImgClicked, /* On click */
+                /*         "URL": "https://epvisual.com/" */
+            },
+            {
+                "pitch": -6,
+                "yaw": -52,
+                "cssClass": "pic-hotspot",
+                "createTooltipFunc": hotspotImg, /* On hover */
+                "createTooltipArgs": "img/1865_200x200.jpg",
+                "clickHandlerFunc": displayImgClicked /* On click */
+                /*         "URL": "https://epvisual.com/" */
+            },
+            {
+                "pitch": 20,
+                "yaw": 24,
+                "cssClass": "bridge-hotspot",
+                "createTooltipFunc": hotspot,
+                "createTooltipArgs": "Fort Point has stood guard at the narrows of the Golden Gate for over 150 years.",
+            }]
+        });
+
+        function hotspotImg(hotSpotDiv, args) {
+            hotSpotDiv.classList.add('custom-tooltip-img');
+            var span = document.createElement('span');
+            span.innerHTML = "<img src='" + args + "'/>";
+            hotSpotDiv.appendChild(span);
+            /*       span.style.width = span.scrollWidth - 20 + 'px';*/
+            span.style.width = 220 + 'px'; /* Allows the border around the image */
+            span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
+            span.style.marginTop = -span.scrollHeight - 12 + 'px'; /* Brings the image above the hostpot */
+        }
+
+        function hotspotImg2(hotSpotDiv, args) {
+            hotSpotDiv.classList.add('custom-tooltip-img2');
+            var span = document.createElement('span');
+            span.innerHTML = "<img src='" + args + "'/>";
+            hotSpotDiv.appendChild(span);
+            /*       span.style.width = span.scrollWidth - 20 + 'px';*/
+            span.style.width = 300 + 'px'; /* Allows the border around the image */
+            span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
+            span.style.marginTop = -span.scrollHeight - 12 + 'px'; /* Brings the image above the hostpot */
+        }
+
+
+        function displayImgClicked(hotSpotDiv, args) {
+            console.log('displayeImgClicked called Successfully');
+        }
+
+
+        function hotspotVid(hotSpotDiv, args) {
+            hotSpotDiv.classList.add('custom-tooltip-vid');
+            var span = document.createElement('span');
+            span.innerHTML = "<video id=\"vidID\" width=\"426\" height=\"240\" src=\" " + args + "\" controls></video>";
+            hotSpotDiv.appendChild(span);
+            span.style.width = span.scrollWidth - 20 + 'px';
+            span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
+            span.style.marginTop = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
+            /* pause video playback on mouse out */
+            let vidObj = document.querySelector('#vidID');
+            vidObj.addEventListener('mouseout', (event) => {
+                vidObj.pause();
+            });
+        }
+
+        // Hotspot tool tip creations 
+        function hotspot(hotSpotDiv, args) {
+            hotSpotDiv.classList.add('custom-tooltip');
+            var span = document.createElement('span');
+            span.innerHTML = args;
+            hotSpotDiv.appendChild(span);
+            span.style.width = span.scrollWidth + 'px';
+            span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
+            span.style.marginTop = -span.scrollHeight - 12 + 'px';
+        }
+
+
+    </script>
+
+</body>
+
+</html>

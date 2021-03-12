@@ -1,0 +1,52 @@
+body{
+    background-color: #fff;
+}
+
+#wrapper {
+    width: 1200px;
+    margin: 10px auto;
+    background-color: #fff;
+    border: solid white 2px;
+}
+
+#myWorld {
+    width: 1200px;
+    height: 700px;
+
+}
+
+h2, h5{
+    text-align: center;
+    color: white;
+}
+
+.mybtn{
+    margin: 0 auto;
+    text-align: center;
+}
+
+button {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 25px;
+    padding: 1rem 3.5rem;
+    background-color: #eb5c29;
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 5px rgba(29, 29, 29, 0.438);
+}
+
+#light img {
+    width: 2rem;
+    padding: 0;
+}
+
+#Dark img {
+    width: 1.5rem;
+    padding: 0;
+}

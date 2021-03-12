@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>La Silla Observatory</title>
+    <meta charset="UTF-8">
+    <!--link to frameworks-->
+    <link rel="stylesheet" href="css/pannellum.css">
+    <script type="application/javascript" src="js/pannellum.js"></script>
+    <style>
+        #wrapper {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        #vrCanvasID {
+            width: 1200px;
+            height: 700px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="vrCanvasID"></div>
+    </div>
+
+
+    <script type="application/javascript">
+        pannellum.viewer('vrCanvasID', {
+            "type": "equirectangular",
+            "showControls": true,
+            "panorama": "images/la_silla.jpg",
+            "autoLoad": true,
+            "hotSpots": [{
+                "pitch": 0,
+                /*Up down*/
+                "yaw": 0,
+                /*left right*/
+                "type": "info",
+                /* determines what type of icon is being displayed*/
+                "text": "IDM-LINK",
+                /*what text do you want to display on hover*/
+                "URL": "https://digm.drexel.edu/idm/" /*URL since the text says LINK*/
+
+            }]
+        });
+
+    </script>
+
+</body>
+
+</html>
