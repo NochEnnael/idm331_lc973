@@ -77,7 +77,7 @@ animate();
 
 var stop = document.getElementById("rotate")
 
-stop.onclick = function (){
+stop.onclick = function () {
     console.log('stop btn working');
     modelObj.rotation.y = 0;
 }
@@ -132,17 +132,34 @@ dark.onclick = function () {
     scene.background = new THREE.Color(0x361B29);
 }
 
-var hang = document.getElementById("hang")
+/* var hang = document.getElementById("hang")
 
 hang.onclick = function () {
     console.log('hang btn working');
-    
+
     var camera = new THREE.PerspectiveCamera(10, myWorldObj.scrollWidth / myWorldObj.scrollHeight, 1, 1000);
 
     camera.position.z = 0;
     amera.position.x = -30;
-    camera.position.y = 40; 
-
+    camera.position.y = 40;
+} */
 /* Figure out how to make this button work to go to the hanout spot */
+
+
+var music = document.getElementById("play")
+
+music.onclick = function () {
+    console.log('play btn working');
+    var audio = document.getElementById("audio");
+        audio.play();
 }
+
+var music = document.getElementById("pause")
+
+music.onclick = function () {
+    console.log('pause play btn working');
+    audio.pause();
+}
+
+
 
